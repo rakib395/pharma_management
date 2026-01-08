@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_doctor_prescription_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page" style="font-family: 'Arial'; font-size: 13px; color: #333;">
+                        
+                        <div style="background-color: #7FB3D5; border: 1px solid #000; text-align: center; padding: 5px; margin-top: 20px;">
+                            <strong style="font-size: 16px;">Customer Invoice</strong>
+                        </div>
+
+                        <table style="width: 100%; border: 1px solid #000; border-top: none; margin-bottom: 20px;">
+                            <tr>
+                                <td style="width: 50%; padding: 10px; border-right: 1px solid #000; vertical-align: top;">
+                                    <strong>Invoiced To</strong><br/>
+                                    Customer Name: <span t-field="o.name"/><br/>
+                                    Address: <span t-field="o.city"/><br/>
+                                    Specialization: <span t-field="o.specialization"/>
+                                </td>
+                                <td style="width: 50%; padding: 10px; vertical-align: top;">
+                                    <strong>Invoice Details</strong><br/>
+                                    Invoice Date: <span t-esc="datetime.datetime.now().strftime('%Y-%m-%d')"/><br/>
+                                    Invoice Currency: BDT
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table class="table table-sm" style="width: 100%; border: 1px solid #000;">
+                            <thead>
+                                <tr style="background-color: #7FB3D5; text-align: center;">
+                                    <th style="border: 1px solid #000;">Description</th>
+                                    <th style="border: 1px solid #000;">Quantity</th>
+                                    <th style="border: 1px solid #000;">Unit Price</th>
+                                    <th style="border: 1px solid #000;">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="grand_total" t-value="0"/>
+                                <t t-foreach="env['pharma.prescription'].search([('doctor_id', '=', o.id)])" t-as="p">
+                                    <t t-foreach="p.medicine_line_ids" t-as="line">
+                                        <tr style="text-align: center;">
+                                            <td style="border: 1px solid #000; text-align: left;"><span t-field="line.medicine_id.name"/></td>
+                                            <td style="border: 1px solid #000;"><span t-field="line.quantity"/></td>
+                                            <td style="border: 1px solid #000;"><span t-field="line.price_unit"/></td>
+                                            <td style="border: 1px solid #000; text-align: right;"><span t-field="line.subtotal"/></td>
+                                            <t t-set="grand_total" t-value="grand_total + line.subtotal"/>
+                                        </tr>
+                                    </t>
+                                </t>
+                                <tr>
+                                    <td colspan="2" style="border: none;"></td>
+                                    <td style="border: 1px solid #000; text-align: right;"><strong>Subtotal</strong></td>
+                                    <td style="border: 1px solid #000; text-align: right;"><span t-esc="grand_total" t-options='{"widget": "float", "precision": 2}'/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="border: none;"></td>
+                                    <td style="border: 1px solid #000; background-color: #eee; text-align: right;"><strong>Grand Total</strong></td>
+                                    <td style="border: 1px solid #000; background-color: #eee; text-align: right;"><strong><span t-esc="grand_total" t-options='{"widget": "float", "precision": 2}'/></strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div style="margin-top: 15px;">
+                            <strong>Amount in Words: </strong> <span>Only BDT <t t-esc="grand_total"/></span>
+                        </div>
+
+                        <div style="margin-top: 20px; font-size: 11px;">
+                            <strong>Terms &amp; Conditions</strong><br/>
+                            1. Working Hours &amp; Days: Standard calculation is based on 9 hours per day.<br/>
+                            2. Working on Holidays: If work is required on a holiday, the client must provide advance notice.<br/>
+                            3. Payment Terms: At the end of every month.
+                        </div>
+
+                        <div style="margin-top: 20px; font-size: 11px;">
+                            <strong>Bank Details</strong><br/>
+                            Account No: 4001414154151<br/>
+                            Bank Name: AB Bank Limited<br/>
+                            Branch: Shewrapara Branch<br/>
+                            SWIFT Code: 1091414
+                        </div>
+
+                        <div style="margin-top: 30px; text-align: center; font-size: 10px; font-style: italic;">
+                            *This is a system generated invoice and does not require any physical signature.
+                        </div>
+
+                        <div class="footer" style="border-top: 1px solid #000; text-align: center; font-size: 11px; padding-top: 5px;">
+                            Email: info@mindsynthtech.com | Phone: +8801314141415 | Website: www.mindsynthtech.com
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

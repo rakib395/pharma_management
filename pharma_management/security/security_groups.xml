@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_pharma_management" model="ir.module.category">
+        <field name="name">Pharma Management</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="group_pharma_representative" model="res.groups">
+        <field name="name">Representative</field>
+        <field name="category_id" ref="module_category_pharma_management"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="group_pharma_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_category_pharma_management"/>
+        <field name="implied_ids" eval="[(4, ref('group_pharma_representative'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+    <record id="rule_pharma_prescription_representative" model="ir.rule">
+        <field name="name">Representative's Own Prescriptions</field>
+        <field name="model_id" ref="model_pharma_prescription"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('group_pharma_representative'))]"/>
+    </record>
+
+</odoo>

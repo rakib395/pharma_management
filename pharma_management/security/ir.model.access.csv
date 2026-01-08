@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pharma_doctor,pharma.doctor,model_pharma_doctor,base.group_user,1,1,1,1
+access_pharma_medicine,pharma.medicine,model_pharma_medicine,base.group_user,1,1,1,1
+access_pharma_representative,pharma.representative,model_pharma_representative,base.group_user,1,1,1,1
+access_pharma_prescription,pharma.prescription,model_pharma_prescription,base.group_user,1,1,1,1
+access_pharma_prescription_line,pharma.prescription.line,model_pharma_prescription_line,base.group_user,1,1,1,1
+access_pharma_wizard_prescription,pharma.wizard.prescription,model_pharma_wizard_prescription,base.group_user,1,1,1,1

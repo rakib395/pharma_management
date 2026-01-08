@@ -1,0 +1,23 @@
+{
+    'name': 'Pharma Management',
+    'version': '1.0',
+    'summary': 'Manage Doctors, MRs, and Prescriptions',
+    'category': 'Sales',
+    'author': 'MH.Rakib',
+    'depends': ['base', 'mail'], 
+ 'data': [
+    'security/security_groups.xml',
+    'security/ir.model.access.csv',
+    'wizards/prescription_wizard_view.xml',
+    'views/doctor_views.xml',
+    'views/representative_views.xml',
+    'views/medicine_views.xml',
+    'views/prescription_views.xml',
+    'reports/report_action.xml',
+    'reports/doctor_prescription_report_template.xml',
+    'views/menus.xml',  
+],
+    'installable': True,
+    'application': True,
+    'license': 'LGPL-3',
+}

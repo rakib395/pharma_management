@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_pharma_root" name="Pharma Management" sequence="10"/>
+
+    <menuitem id="menu_pharma_doctor" name="Doctors" parent="menu_pharma_root" action="action_pharma_doctor" sequence="10"/>
+    <menuitem id="menu_pharma_representative" name="Representatives" parent="menu_pharma_root" action="action_pharma_representative" sequence="20"/>
+    <menuitem id="menu_pharma_medicine" name="Medicines" parent="menu_pharma_root" action="action_pharma_medicine" sequence="30"/>
+    <menuitem id="menu_pharma_prescription" name="Prescriptions" parent="menu_pharma_root" action="action_pharma_prescription" sequence="40"/>
+<menuitem id="menu_pharma_wizard" 
+          name="Prescription Assistant" 
+          parent="menu_pharma_root" 
+          action="action_pharma_wizard_prescription" 
+          sequence="50"/>
+</odoo>

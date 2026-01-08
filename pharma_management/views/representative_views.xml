@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pharma_representative_kanban" model="ir.ui.view">
+        <field name="name">pharma.representative.kanban</field>
+        <field name="model">pharma.representative</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="region">
+                <field name="name"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <strong><field name="name"/></strong>
+                                <div>ID: <field name="employee_id"/></div>
+                                <div>Achievement: <field name="achievement_rate"/>%</div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_pharma_representative" model="ir.actions.act_window">
+        <field name="name">Representatives</field>
+        <field name="res_model">pharma.representative</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+</odoo>
